@@ -1,0 +1,46 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.143'
+}
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = 'flightblocks-sable-compat'
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+neoForge {
+    version = project.neo_version
+
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+}
+
+dependencies {
+    compileOnly files('../../mods/flightblocks-1.21.1-1.0.8.jar')
+    compileOnly files('../../mods/sable-neoforge-1.21.1-2.0.3.jar')
+    compileOnly files('libs/sable-companion-common-1.21.1-1.6.0.jar')
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}
+
+tasks.named('jar', Jar).configure {
+    manifest {
+        attributes([
+            'Specification-Title'     : mod_name,
+            'Specification-Version'   : mod_version,
+            'Implementation-Title'    : project.name,
+            'Implementation-Version'  : mod_version,
+            'MixinConfigs'            : 'flightblocks_sable_compat.mixins.json'
+        ])
+    }
+}

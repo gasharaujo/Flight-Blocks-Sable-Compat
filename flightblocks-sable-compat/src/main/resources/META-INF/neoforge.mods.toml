@@ -1,0 +1,44 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "MIT"
+
+[[mods]]
+modId = "flightblocks_sable_compat"
+version = "1.0.0"
+displayName = "Flight Blocks x Sable Compat"
+authors = "Sable instance compatibility patch"
+description = '''
+Makes Flight Blocks grant local flight when the block is assembled into a
+moving Sable sublevel by using Sable-aware world-space distance checks.
+'''
+
+[[mixins]]
+config = "flightblocks_sable_compat.mixins.json"
+
+[[dependencies."flightblocks_sable_compat"]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1.244,22)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies."flightblocks_sable_compat"]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,1.21.2)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies."flightblocks_sable_compat"]]
+modId = "flightblocks"
+type = "required"
+versionRange = "[1.0.8,1.1.0)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies."flightblocks_sable_compat"]]
+modId = "sable"
+type = "required"
+versionRange = "[2.0.3,2.0.4)"
+ordering = "AFTER"
+side = "BOTH"
